@@ -8,9 +8,8 @@
     "decrypt": "decrypt.js"
   },
   "scripts": {
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish"
+    "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
+    "prepublishOnly": "git push && git push --tags && gh-release"
   },
   "keywords": [
     "netlify",
@@ -30,5 +29,9 @@
   "bugs": {
     "url": "https://github.com/sw-yx/netlify-plugin-encrypted-files/issues"
   },
-  "homepage": "https://github.com/sw-yx/netlify-plugin-encrypted-files#readme"
+  "homepage": "https://github.com/sw-yx/netlify-plugin-encrypted-files#readme",
+  "devDependencies": {
+    "auto-changelog": "^1.16.2",
+    "gh-release": "^3.5.0"
+  }
 }

@@ -6,24 +6,6 @@ const zlib = require('zlib');
 const ENCRYPTED_PLUGIN_SALT = 'ENCRYPTED_PLUGIN_SALT';
 const { NETLIFY_ENCRYPT_KEY } = process.env;
 
-// for crypto stuff later
-// class AppendInitVect extends Transform {
-//   constructor(initVect, opts) {
-//     super(opts)
-//     this.initVect = initVect
-//     this.appended = false
-//   }
-
-//   _transform(chunk, encoding, cb) {
-//     if (!this.appended) {
-//       this.push(this.initVect)
-//       this.appended = true
-//     }
-//     this.push(chunk)
-//     cb()
-//   }
-// }
-
 module.exports = function pluginDecrypt({
   // unzip to '.testdecrypt' folder instead of overwriting real files
   testdecrypt = false

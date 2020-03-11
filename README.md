@@ -1,6 +1,10 @@
 # Netlify Plugin Encrypted Files
 
-[Netlify Build](https://github.com/netlify/build) Plugin to partially obscure files (names and contents) in git repos. This enables you to *partially* open source your site, while still being able to work as normal on your local machine and in your Netlify builds. External viewers of your Git repo will just see hashes for your secret content while it is encrypted - and as long as it still builds without these files, they can still contribute to the rest of your site.
+[Netlify Build](https://github.com/netlify/build) Plugin to partially obscure files (names and contents) in git repos!
+
+This enables you to ***partially* open source your site**, while still being able to work as normal on your local machine and in your Netlify builds. 
+
+External viewers of your Git repo will just see hashes for your secret content while it is encrypted - and as long as it still builds without these files, they can still contribute to the rest of your site.
 
 ## Usage
 

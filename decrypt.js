@@ -2,11 +2,6 @@
 'use strict';
 
 const sade = require('sade');
-// const path = require('path')
-// const fs = require('fs')
-// const crypto = require('crypto')
-// const zlib = require('zlib')
-// const { Transform } = require('stream')
 
 const pluginDecrypt = require('./pluginDecrypt');
 
