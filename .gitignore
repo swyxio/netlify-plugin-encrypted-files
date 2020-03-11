@@ -116,4 +116,4 @@ dist
 
 # special
 .testdecrypt
-fixtures/files/secretstuff/*.*.md
+fixtures/files/secretstuff/*.md
