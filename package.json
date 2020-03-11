@@ -1,11 +1,11 @@
 {
-  "name": "@netlify/plugin-encrypted-files",
+  "name": "netlify-plugin-encrypted-files",
   "version": "0.0.1",
-  "description": "",
+  "description": "this plugin is an unusual one. it has a CLI that works outside of the build bot.",
   "main": "index.js",
   "bin": {
-    "encrypt": "./encrypt.js",
-    "decrypt": "./decrypt.js"
+    "encrypt": "encrypt.js",
+    "decrypt": "decrypt.js"
   },
   "scripts": {
     "release:patch": "npm version patch && npm publish",
@@ -19,7 +19,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^3.0.0",
     "rimraf": "^3.0.0",
     "sade": "^1.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sw-yx/netlify-plugin-encrypted-files.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sw-yx/netlify-plugin-encrypted-files/issues"
+  },
+  "homepage": "https://github.com/sw-yx/netlify-plugin-encrypted-files#readme"
 }

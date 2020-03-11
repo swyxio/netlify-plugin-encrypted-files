@@ -1,10 +1,11 @@
-const pluginDecrypt = require('./pluginDecrypt')
+const pluginDecrypt = require('./pluginDecrypt');
 
-module.exports = {
-  name: '@netlify/plugin-encrypted-files',
-  // scopes: ['listSites'],
-  onInit() {
-    console.log('decrypting files')
-    pluginDecrypt()
-  },
-}
+module.exports = function netlify404nomore(conf) {
+  return {
+    name: 'netlify-plugin-encrypted-files',
+    onInit() {
+      console.log('decrypting files');
+      pluginDecrypt();
+    }
+  };
+};
