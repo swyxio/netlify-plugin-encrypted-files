@@ -5,7 +5,7 @@ module.exports = function netlify404nomore(conf) {
     name: 'netlify-plugin-encrypted-files',
     onInit() {
       console.log('decrypting files');
-      pluginDecrypt();
+      pluginDecrypt({});
     }
   };
 };

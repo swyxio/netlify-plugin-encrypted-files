@@ -11,6 +11,7 @@ External viewers of your Git repo will just see hashes for your secret content w
 Specify the plugin in your `netlify.yml`. No config is required but we show the default options here.
 
 ```yml
+# netlify.yml
 build:
   publish: build # NOTE: you should have a publish folder specified here for this to work
   command: echo "your build command goes here"
@@ -18,8 +19,26 @@ build:
 
 plugins:
   - package: netlify-plugin-encrypted-files
-    # there is no config available - but you must supply a NETLIFY_ENCRYPT_KEY env variable
+    # no config required
+    # config:
+      # branches: # if specified, allow a small set of branches for which the decrypt is applied
+      # - master
+      # - swyx/myNewBranch
+    # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
 ```
+
+In your local environment, install the plugin and run the `encrypt` CLI on your project specifying a glob filepath for what should be encrypted and what `NETLIFY_ENCRYPT_KEY` you intend to use, e.g.
+
+```bash
+npm i netlify-plugin-encrypted-files
+NETLIFY_ENCRYPT_KEY='test' node encrypt.js content/secretstuff/**/*.*
+```
+
+This generates a `.encrypted` folder which you should check into git. 
+
+Also dont forget to `.gitignore` your secret content!
+
+On Netlify's side, all it does is it runs `decrypt` for you, using the same `NETLIFY_ENCRYPT_KEY` you used to encrypt it. To set the environment variable without it being visible in git, you should [use the Netlify UI](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables).
 
 ## How It Works
 
@@ -36,3 +55,21 @@ The idea is:
 
 2. while deploying, this plugin runs a `decrypt` before any build and decrypts it with the same env variable
 3. for collaborators, they should run `decrypt` on git pull
+
+To test locally you can run:
+
+-  `NETLIFY_ENCRYPT_KEY='test' node encrypt.js fixtures/files/secretstuff/**/*.*`
+-  `NETLIFY_ENCRYPT_KEY='test' node decrypt.js --testdecrypt`
+
+No configuration is required - by default the `decrypt`ing works on all Netlify Builds, but you can restrict it to a small set of branches you specify:
+
+```yml
+# netlify.yml
+plugins:
+  - package: netlify-plugin-encrypted-files
+    config:
+      branches: # if specified, allow a small set of branches for which the decrypt is applied
+      - master
+      - swyx/myNewBranch
+    # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
+```

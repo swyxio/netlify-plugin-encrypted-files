@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const zlib = require('zlib');
+const chalk = require('chalk');
 const { Transform } = require('stream');
 
 const rimraf = require('rimraf');
@@ -34,7 +35,7 @@ class AppendInitVect extends Transform {
 sade('encrypt <regex>', true)
   .version('0.0.1')
   .describe('Encrypt files. Expects a linked site.')
-  .example('build src/*.js --global --config my-conf.js')
+  .example('encrypt secretcontent/**/*.md')
   .action((regex, opts) => {
     if (typeof NETLIFY_ENCRYPT_KEY === 'undefined') {
       console.error(
@@ -52,6 +53,7 @@ sade('encrypt <regex>', true)
     fs.mkdirSync('.encrypted');
 
     filePaths.forEach((filePath) => {
+      console.log(`encrypting ${chalk.blue(filePath)}`);
       encrypt(filePath);
     });
   })
