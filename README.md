@@ -52,14 +52,21 @@ The idea is:
 - before committing, run `encrypt secretcontent/**/*.md` (any file matching logic here will do)
 - make sure encrypted files are gitignored
 - `encrypt` will encrypt your files to the `.encrypt` folder with the `NETLIFY_ENCRYPT_KEY` environment variable
+- so you run something like:
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn encrypt fixtures/files/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/encrypt fixtures/files/secretstuff/**/*.*`
 
 2. while deploying, this plugin runs a `decrypt` before any build and decrypts it with the same env variable
-3. for collaborators, they should run `decrypt` on git pull
+3. for collaborators, they should run `decrypt` on git pull. 
+- so you run something like:
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt fixtures/files/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt fixtures/files/secretstuff/**/*.*`
+- NOTE: By default this overwrites files since that is usually the desired behavior, but if you want to be extra sure, you can add a `--testdecrypt` flag:
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt --testdecrypt fixtures/files/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt --testdecrypt fixtures/files/secretstuff/**/*.*`
+  - this will decrypt to a `testdecrypt` folder instead of the real destination, so you can preview what the effect of decrypting will be.
 
-To test locally you can run:
-
--  `NETLIFY_ENCRYPT_KEY='test' node encrypt.js fixtures/files/secretstuff/**/*.*`
--  `NETLIFY_ENCRYPT_KEY='test' node decrypt.js --testdecrypt`
+## Configuration
 
 No configuration is required - by default the `decrypt`ing works on all Netlify Builds, but you can restrict it to a small set of branches you specify:
 
@@ -73,3 +80,10 @@ plugins:
       - swyx/myNewBranch
     # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
 ```
+
+## For Collaborators
+
+To test this repo locally you can run:
+
+-  `NETLIFY_ENCRYPT_KEY='test' encrypt fixtures/files/secretstuff/**/*.*`
+-  `NETLIFY_ENCRYPT_KEY='test' decrypt --testdecrypt` by default decrypt
