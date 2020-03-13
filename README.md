@@ -42,18 +42,19 @@ On Netlify's side, all it does is it runs `decrypt` for you, using the same `NET
 
 ## How It Works
 
-This plugin is an unusual one. it has a CLI that works outside of the build bot.
+This plugin is an unusual one: it has a CLI that works outside of the build bot, that you use to encrypt stuff. Then, inside the plugin, it runs the decrypt command for you before proceeding with the build.
 
 The idea is:
 
 1. while developing, work with your files as normal
 
 - before committing, run `encrypt secretcontent/**/*.md` (any file matching logic here will do)
-- make sure encrypted files are gitignored
+- make sure files-to-be-encrypted are gitignored
 - `encrypt` will encrypt your files to the `.encrypt` folder with the `NETLIFY_ENCRYPT_KEY` environment variable
 - so you run something like:
   -  `NETLIFY_ENCRYPT_KEY='test' yarn encrypt fixtures/files/secretstuff/**/*.*`
   -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/encrypt fixtures/files/secretstuff/**/*.*`
+- check the new `.encrypt` folder into git
 
 2. while deploying, this plugin runs a `decrypt` before any build and decrypts it with the same env variable
 3. for collaborators, they should run `decrypt` on git pull. 
