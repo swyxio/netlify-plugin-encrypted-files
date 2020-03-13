@@ -34,7 +34,7 @@ npm i netlify-plugin-encrypted-files
 NETLIFY_ENCRYPT_KEY='test' node encrypt.js content/secretstuff/**/*.*
 ```
 
-This generates a `.encrypted` folder which you should check into git. 
+This generates a `.encrypted` folder which you should check into git. ([Here's how it looks - even filenames are obscured!](https://github.com/sw-yx/netlify-plugin-encrypted-files/tree/master/.encrypted))
 
 Also dont forget to `.gitignore` your secret content!
 
