@@ -46,7 +46,6 @@ This plugin is an unusual one. it has a CLI that works outside of the build bot.
 
 The idea is:
 
-0. you should have your site linked with the Netlify CLI
 1. while developing, work with your files as normal
 
 - before committing, run `encrypt secretcontent/**/*.md` (any file matching logic here will do)
