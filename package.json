@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-encrypted-files",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "this plugin is an unusual one. it has a CLI that works outside of the build bot.",
   "main": "index.js",
   "bin": {
