@@ -8,23 +8,17 @@ External viewers of your Git repo will just see hashes for your secret content w
 
 ## Usage
 
-Specify the plugin in your `netlify.yml`. No config is required but we show the default options here.
+To install, add the following lines to your `netlify.toml` file:
 
-```yml
-# netlify.yml
-build:
-  publish: build # NOTE: you should have a publish folder specified here for this to work
-  command: echo "your build command goes here"
-  NODE_ENV: 10.15.3
-
-plugins:
-  - package: netlify-plugin-encrypted-files
-    # no config required
-    # config:
-      # branches: # if specified, allow a small set of branches for which the decrypt is applied
-      # - master
-      # - swyx/myNewBranch
-    # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
+```toml
+[[plugins]]
+package = "netlify-plugin-encrypted-files"
+  # all inputs are optional. uncomment to apply
+  # [plugins.inputs]
+  # branches = [ # if specified, allow a small set of branches for which the decrypt is applied
+    # "master",
+    # "swyx/myNewBranch"
+  # ] # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
 ```
 
 In your local environment, install the plugin and run the `encrypt` CLI on your project specifying a glob filepath for what should be encrypted and what `NETLIFY_ENCRYPT_KEY` you intend to use, e.g.
@@ -70,15 +64,20 @@ The idea is:
 
 No configuration is required - by default the `decrypt`ing works on all Netlify Builds, but you can restrict it to a small set of branches you specify:
 
-```yml
-# netlify.yml
-plugins:
-  - package: netlify-plugin-encrypted-files
-    config:
-      branches: # if specified, allow a small set of branches for which the decrypt is applied
-      - master
-      - swyx/myNewBranch
-    # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
+```toml
+# netlify.toml
+[[plugins]]
+package = "netlify-plugin-encrypted-files"
+
+  [plugins.inputs]
+  
+  # if specified, allow a small set of branches for which the decrypt is applied
+  branches = [
+    "master",
+    "swyx/myNewBranch"
+  ] 
+  
+  # dont forget to specify a NETLIFY_ENCRYPT_KEY env variable in Netlify's UI
 ```
 
 ## For Collaborators
