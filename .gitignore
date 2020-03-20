@@ -116,4 +116,4 @@ dist
 
 # special
 .testdecrypt
-demo/secretstuff/*.html
+/demo/secretstuff/*.html
