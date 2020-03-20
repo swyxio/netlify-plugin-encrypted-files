@@ -32,7 +32,7 @@ npm i netlify-plugin-encrypted-files
 NETLIFY_ENCRYPT_KEY='test' node encrypt.js content/secretstuff/**/*.*
 ```
 
-This generates a `.encrypted` folder which you should check into git. ([Here's how it looks - even filenames are obscured!](https://github.com/sw-yx/netlify-plugin-encrypted-files/tree/master/.encrypted))
+This generates a `.encrypted` folder which you should check into git. ([Here's how it looks - even filenames are obscured!](https://github.com/sw-yx/netlify-plugin-encrypted-tree/master/.encrypted))
 
 Also dont forget to `.gitignore` your secret content!
 
@@ -53,18 +53,18 @@ The idea is:
 - make sure files-to-be-encrypted are gitignored
 - `encrypt` will encrypt your files to the `.encrypt` folder with the `NETLIFY_ENCRYPT_KEY` environment variable
 - so you run something like:
-  -  `NETLIFY_ENCRYPT_KEY='test' yarn encrypt demo/files/secretstuff/**/*.*`
-  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/encrypt demo/files/secretstuff/**/*.*`
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn encrypt demo/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/encrypt demo/secretstuff/**/*.*`
 - check the new `.encrypt` folder into git
 
 2. while deploying, this plugin runs a `decrypt` before any build and decrypts it with the same env variable
 3. for collaborators, they should run `decrypt` on git pull. 
 - so you run something like:
-  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt demo/files/secretstuff/**/*.*`
-  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt demo/files/secretstuff/**/*.*`
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt demo/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt demo/secretstuff/**/*.*`
 - NOTE: By default this overwrites files since that is usually the desired behavior, but if you want to be extra sure, you can add a `--testdecrypt` flag:
-  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt --testdecrypt demo/files/secretstuff/**/*.*`
-  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt --testdecrypt demo/files/secretstuff/**/*.*`
+  -  `NETLIFY_ENCRYPT_KEY='test' yarn decrypt --testdecrypt demo/secretstuff/**/*.*`
+  -  or `NETLIFY_ENCRYPT_KEY='test' /node_modules/.bin/decrypt --testdecrypt demo/secretstuff/**/*.*`
   - this will decrypt to a `testdecrypt` folder instead of the real destination, so you can preview what the effect of decrypting will be.
 
 ## Configuration
@@ -91,5 +91,5 @@ package = "netlify-plugin-encrypted-files"
 
 To test this repo locally you can run:
 
--  `NETLIFY_ENCRYPT_KEY='test' node encrypt demo/files/secretstuff/**/*.*`
+-  `NETLIFY_ENCRYPT_KEY='test' node encrypt demo/secretstuff/**/*.*`
 -  `NETLIFY_ENCRYPT_KEY='test' node decrypt --testdecrypt` by default decrypt
