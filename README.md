@@ -8,7 +8,7 @@ External viewers of your Git repo will just see hashes for your secret content w
 
 ## Demo
 
-
+https://netlify-plugin-encrypted-files.netlify.com
 
 ## Usage
 
@@ -37,6 +37,9 @@ This generates a `.encrypted` folder which you should check into git. ([Here's h
 Also dont forget to `.gitignore` your secret content!
 
 On Netlify's side, all it does is it runs `decrypt` for you, using the same `NETLIFY_ENCRYPT_KEY` you used to encrypt it. To set the environment variable without it being visible in git, you should [use the Netlify UI](https://docs.netlify.com/configure-builds/environment-variables/#declare-variables).
+
+![image](https://user-images.githubusercontent.com/6764957/77190041-e827d600-6aae-11ea-9a5d-5dc13b4b0475.png)
+
 
 ## How It Works
 
