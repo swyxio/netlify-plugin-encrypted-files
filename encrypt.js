@@ -44,8 +44,8 @@ sade('encrypt <regex>', true)
       process.exit(1);
     }
     // Program handler
-    const filePaths = opts._;
-    if (!filePaths.length) throw new Error('no filePaths matched ' + regex);
+    const filePaths = [regex, ...opts._];
+    if (!filePaths.length) throw new Error('no filePaths specified!');
 
     // prepare encrypt folder
     if (fs.existsSync('.encrypted'))
