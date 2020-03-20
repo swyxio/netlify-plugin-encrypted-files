@@ -12,7 +12,7 @@ module.exports = function pluginDecrypt({
 }) {
   if (typeof NETLIFY_ENCRYPT_KEY === 'undefined') {
     console.error(
-      'must define NETLIFY_ENCRYPT_KEY to use netlify-plugin-encrypted-files'
+      'must define NETLIFY_ENCRYPT_KEY to use netlify-plugin-encrypted-files. For more info: https://github.com/sw-yx/netlify-plugin-encrypted-files#usage'
     );
     process.exit(1);
   }
