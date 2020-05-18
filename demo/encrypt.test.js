@@ -8,6 +8,6 @@ test('plugin fixture works', async () => {
     process.env.NETLIFY_ENCRYPT_KEY = 'test';
     const initPlugin = netlifyPlugin();
     console.log(`running ${initPlugin.name}`);
-    initPlugin.onInit();
+    initPlugin.onPreBuild();
   }).not.toThrow();
 });

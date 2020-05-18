@@ -4,7 +4,7 @@ const chalk = require('chalk');
 module.exports = function netlify404nomore(conf) {
   return {
     name: 'netlify-plugin-encrypted-files',
-    onInit({ pluginConfig: { branches } }) {
+    onPreBuild({ pluginConfig: { branches } }) {
       console.log('decrypting files');
       if (branches && branches.includes(process.env.BRANCH)) {
         pluginDecrypt({});
