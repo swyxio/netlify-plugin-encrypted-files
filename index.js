@@ -1,8 +1,7 @@
 const pluginDecrypt = require('./pluginDecrypt');
 const chalk = require('chalk');
 
-module.exports = function netlify404nomore(conf) {
-  return {
+module.exports = {
     name: 'netlify-plugin-encrypted-files',
     onInit({ pluginConfig: { branches } }) {
       console.log('decrypting files');
@@ -20,5 +19,4 @@ module.exports = function netlify404nomore(conf) {
         );
       }
     }
-  };
 };
